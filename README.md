@@ -3,17 +3,21 @@ Osquery helper tool for Elasticsearch
 
 #### Generate schema file from osquery repository
 
-```
-python tools/codegen/genwebsitejson.py --specs=./specs > schema.json
-```
+1. Go to osquery repo.
+1. Checkout the tag for the osquery version that will be exported
+1. Run `cmake .`
+1. Run `python tools/codegen/genwebsitejson.py --specs=./specs > schema.json`
 
 #### Generate fields for integration package
 
 ```
 ./osqgen --schema "./schema/osquery/osquery_schema_5.4.0.json" fields > osquery.yml
 ```
+Write this file to `packages/osquery_manager/data_stream/result/fields/osquery.yml`
 
-#### Generate fields for readme for integration package
+#### Generate fields for readme for kibana
+
+This generates the markdown formatted osquery exported fields that can be added to `docs/reference/osquery-exported-fields.md` in kibana.
 
 ```
 ./osqgen --schema "./schema/osquery/osquery_schema_5.4.0.json" readme > readme.txt
