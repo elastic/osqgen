@@ -259,17 +259,17 @@ func generateReadme(w io.Writer, columns map[string]ColumnInfo, dupColumnsMap ma
 			descriptions := strings.Split(colInfo.Column.Description, "\n")
 			for i, description := range descriptions {
 				if i == 0 {
-					b.WriteString(`*`)
+					b.WriteString(`**`)
 					b.WriteString(colName)
-					b.WriteString(`* - `)
+					b.WriteString(`** - `)
 					b.WriteString(strings.Join(types, ", "))
 					b.WriteString("\n\n")
 				}
 				pos := strings.Index(description, " - ")
 				if pos != -1 {
-					b.WriteString(`* _`)
+					b.WriteString(`* *`)
 					b.WriteString(description[:pos])
-					b.WriteString(`_ - `)
+					b.WriteString(`* - `)
 					b.WriteString(description[pos+len(" - "):])
 				} else {
 					b.WriteString(description)
