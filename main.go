@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"regexp"
 
 	"encoding/json"
 	"errors"
@@ -258,6 +259,14 @@ func generateReadme(w io.Writer, columns map[string]ColumnInfo, dupColumnsMap ma
 
 			descriptions := strings.Split(colInfo.Column.Description, "\n")
 			for i, description := range descriptions {
+				// format urls within description
+				re := regexp.MustCompile(`https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*[^.])`)
+				if re.MatchString(description) {
+					description = re.ReplaceAllStringFunc(description, func(url string) string {
+						return fmt.Sprintf("[%s](%s)", url, url)
+					})
+				}
+
 				if i == 0 {
 					b.WriteString(`**`)
 					b.WriteString(colName)
