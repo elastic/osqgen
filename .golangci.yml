@@ -1,153 +1,91 @@
+version: "2"
 run:
-  timeout: 5m
-  tests: true
+  modules-download-mode: readonly
+  issues-exit-code: 1
 linters:
+  default: none
   enable:
-    - govet
     - errcheck
-    - staticcheck
-    - gofmt
-    - goimports
-    - revive
-    - unused
-    - deadcode
-    - structcheck
-    - varcheck
-    - ineffassign
-    - typecheck
-    - misspell
-    - gocritic
-    - gosimple
-    - depguard
-    - gocyclo
-    - dupl
-    - nakedret
-    - unconvert
-    - unparam
-    - exportloopref
-    - prealloc
-    - interfacer
-    - gochecknoglobals
-    - gochecknoinits
-    - gosec
-    - godot
-    - godox
-    - nolintlint
-    - forbidigo
-    - lll
-    - whitespace
-    - stylecheck
-    - scopelint
-    - gosec
-    - dogsled
     - errorlint
-    - exhaustivestructs
-    - exhaustive
-    - forbidigo
-    - gci
-    - goheader
-    - gomnd
-    - nestif
-    - noctx
-    - rowserrcheck
-    - sqlclosecheck
-    - testpackage
-    - wastedassign
-    - wrapcheck
-    - zerolog
-    - asasalint
-    - bidichk
-    - bodyclose
-    - contextcheck
-    - cyclop
-    - decorder
-    - dupl
-    - durationcheck
-    - errorlint
-    - exhaustive
-    - exportloopref
-    - forbidigo
-    - funlen
-    - gci
-    - gochecknoglobals
-    - gochecknoinits
-    - godot
     - godox
-    - gofmt
     - goheader
-    - goimports
-    - golint
-    - gomnd
-    - gosimple
     - govet
     - ineffassign
-    - lll
     - misspell
-    - nakedret
-    - nestif
-    - noctx
-    - nolintlint
     - prealloc
     - revive
-    - rowserrcheck
-    - scopelint
-    - sqlclosecheck
     - staticcheck
-    - stylecheck
-    - testpackage
-    - typecheck
     - unconvert
-    - unparam
     - unused
-    - varcheck
-    - wastedassign
-    - wrapcheck
-    - zerolog
-    - dogsled
-    - bidichk
-    - asasalint
-    - bodyclose
-    - contextcheck
-    - cyclop
-    - decorder
-    - durationcheck
-    - errorlint
-    - exhaustive
-    - exportloopref
-    - forbidigo
-    - funlen
-    - gci
-    - gochecknoglobals
-    - gochecknoinits
-    - godot
-    - godox
-    - gofmt
-    - goheader
+  settings:
+    goheader:
+      template: |-
+        Licensed to Elasticsearch B.V. under one or more agreements.
+        Elasticsearch B.V. licenses this file to you under the Apache 2.0 License.
+        See the LICENSE file in the project root for more information.
+    revive:
+      enable-all-rules: false
+      rules:
+        - name: bare-return
+        - name: call-to-gc
+        - name: confusing-results
+        - name: constant-logical-expr
+        - name: context-as-argument
+        - name: deep-exit
+        - name: defer
+        - name: duplicated-imports
+        - name: early-return
+        - name: empty-block
+        - name: error-strings
+        - name: errorf
+        - name: exported
+          arguments:
+            - checkPrivateReceivers
+        - name: imports-blocklist
+          arguments:
+            - github.com/pkg/errors
+        - name: increment-decrement
+        - name: range
+        - name: range-val-address
+        - name: range-val-in-closure
+        - name: receiver-naming
+        - name: struct-tag
+        - name: time-naming
+        - name: unconditional-recursion
+        - name: unexported-naming
+        - name: unexported-return
+        - name: unnecessary-stmt
+        - name: unreachable-code
+        - name: unused-parameter
+        - name: unused-receiver
+        - name: var-declaration
+        - name: waitgroup-by-value
+    staticcheck:
+      checks:
+        - all
+  exclusions:
+    generated: lax
+    presets:
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofumpt
     - goimports
-    - golint
-    - gomnd
-    - gosimple
-    - govet
-    - ineffassign
-    - lll
-    - misspell
-    - nakedret
-    - nestif
-    - noctx
-    - nolintlint
-    - prealloc
-    - revive
-    - rowserrcheck
-    - scopelint
-    - sqlclosecheck
-    - staticcheck
-    - stylecheck
-    - testpackage
-    - typecheck
-    - unconvert
-    - unparam
-    - unused
-    - varcheck
-    - wastedassign
-    - wrapcheck
-    - zerolog
+  settings:
+    gofumpt:
+      extra-rules: true
+    goimports:
+      local-prefixes:
+        - github.com/elastic/osqgen
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

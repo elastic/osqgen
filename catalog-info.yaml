@@ -2,10 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: osqgen
-  description: Osquery helper tool for Elasticsearch
-  tags:
-    - go
-    - elasticsearch
+
 spec:
-  type: library
-  owner: elastic
+  type: tool
+  owner: group:security-defend-workflows
