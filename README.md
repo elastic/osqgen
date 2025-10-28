@@ -12,7 +12,6 @@ Osquery helper tool for Elasticsearch
 
 ## Badges
 
-![CI](https://github.com/elastic/osqgen/actions/workflows/ci.yml/badge.svg)
 ![Go Report Card](https://goreportcard.com/badge/github.com/elastic/osqgen)
 
 ## Usage
