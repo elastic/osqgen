@@ -8,7 +8,6 @@ Osquery helper tool for Elasticsearch
 - Owner: [Elastic organization](https://github.com/elastic)
 - License: Apache 2.0
 - Language: Go
-- CI: GitHub Actions, golangci-lint, Dependabot
 
 ## Badges
 
