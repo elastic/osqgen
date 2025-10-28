@@ -166,7 +166,7 @@
     "columns":[
       {
         "name":"allow_signed_enabled",
-        "description":"1 If allow signed mode is enabled else 0",
+        "description":"1 If allow signed mode is enabled else 0 (not supported on macOS 15+)",
         "type":"integer",
         "notes":"",
         "hidden":false,
@@ -175,7 +175,7 @@
       },
       {
         "name":"firewall_unload",
-        "description":"1 If firewall unloading enabled else 0",
+        "description":"1 If firewall unloading enabled else 0 (not supported on macOS 15+)",
         "type":"integer",
         "notes":"",
         "hidden":false,
@@ -202,7 +202,7 @@
       },
       {
         "name":"logging_option",
-        "description":"Firewall logging option",
+        "description":"Firewall logging option (not supported on macOS 15+)",
         "type":"integer",
         "notes":"",
         "hidden":false,
@@ -243,7 +243,7 @@
     "columns":[
       {
         "name":"path",
-        "description":"Path to the executable that is excepted",
+        "description":"Path to the executable that is excepted. On macOS 15+ this can also be a bundle identifier",
         "type":"text",
         "notes":"",
         "hidden":false,
@@ -252,7 +252,7 @@
       },
       {
         "name":"state",
-        "description":"Firewall exception state",
+        "description":"Firewall exception state. 0 if the application is configured to allow incoming connections, 2 if the application is configured to block incoming connections and 3 if the application is configuted to allow incoming connections but with additional restrictions.",
         "type":"integer",
         "notes":"",
         "hidden":false,
@@ -263,7 +263,7 @@
   },
   {
     "name":"alf_explicit_auths",
-    "description":"ALF services explicitly allowed to perform networking.",
+    "description":"ALF services explicitly allowed to perform networking. Not supported on macOS 15+ (returns no results).",
     "url":"https://github.com/osquery/osquery/blob/master/specs/darwin/alf_explicit_auths.table",
     "platforms":[
       "darwin"
@@ -2016,7 +2016,7 @@
         "description":"One of the following: \"Good\" describes a well-performing battery, \"Fair\" describes a functional battery with limited capacity, or \"Poor\" describes a battery that's not capable of providing power",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -2028,7 +2028,7 @@
         "description":"One of the following: \"Normal\" indicates the condition of the battery is within normal tolerances, \"Service Needed\" indicates that the battery should be checked out by a licensed Mac repair service, \"Permanent Failure\" indicates the battery needs replacement",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -2040,7 +2040,7 @@
         "description":"The date the battery was manufactured UNIX Epoch",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -4241,7 +4241,7 @@
         "description":"The number of efficiency cores of the CPU. Only available on Apple Silicon",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -4253,7 +4253,7 @@
         "description":"The number of performance cores of the CPU. Only available on Apple Silicon",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -5745,6 +5745,83 @@
     ]
   },
   {
+    "name":"deviceguard_status",
+    "description":"Retrieve DeviceGuard info of the machine.",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/windows/deviceguard_status.table",
+    "platforms":[
+      "windows"
+    ],
+    "evented":false,
+    "cacheable":false,
+    "notes":"",
+    "examples":[],
+    "columns":[
+      {
+        "name":"version",
+        "description":"The version number of the Device Guard build.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"instance_identifier",
+        "description":"The instance ID of Device Guard.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"vbs_status",
+        "description":"The status of the virtualization based security settings. Returns UNKNOWN if an error is encountered.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"code_integrity_policy_enforcement_status",
+        "description":"The status of the code integrity policy enforcement settings. Returns UNKNOWN if an error is encountered.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"configured_security_services",
+        "description":"The list of configured Device Guard services. Returns UNKNOWN if an error is encountered.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"running_security_services",
+        "description":"The list of running Device Guard services. Returns UNKNOWN if an error is encountered.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"umci_policy_status",
+        "description":"The status of the User Mode Code Integrity security settings. Returns UNKNOWN if an error is encountered.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      }
+    ]
+  },
+  {
     "name":"disk_encryption",
     "description":"Disk encryption status and information.",
     "url":"https://github.com/osquery/osquery/blob/master/specs/posix/disk_encryption.table",
@@ -5807,7 +5884,7 @@
         "description":"Currently authenticated user if available",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -5819,7 +5896,7 @@
         "description":"UUID of authenticated user if available",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -5831,7 +5908,7 @@
         "description":"FileVault status with one of following values: on | off | unknown",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -6147,6 +6224,130 @@
         "name":"flags",
         "description":"DNS record flags",
         "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      }
+    ]
+  },
+  {
+    "name":"dns_lookup_events",
+    "description":"DNS lookups performed through the Windows DNS stack.",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/windows/dns_lookup_events.table",
+    "platforms":[
+      "windows"
+    ],
+    "evented":true,
+    "cacheable":false,
+    "notes":"",
+    "examples":[
+      "select * from dns_lookup_events;"
+    ],
+    "columns":[
+      {
+        "name":"eid",
+        "description":"Event ID",
+        "type":"integer",
+        "notes":"",
+        "hidden":true,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"time",
+        "description":"Event timestamp in Unix format",
+        "type":"bigint",
+        "notes":"",
+        "hidden":true,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"time_windows",
+        "description":"Event timestamp in Windows format",
+        "type":"bigint",
+        "notes":"",
+        "hidden":true,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"datetime",
+        "description":"Event timestamp in DATETIME format",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"pid",
+        "description":"Process ID of process making the lookup",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"path",
+        "description":"Path to binary of process making the lookup (sometimes unavailable for very short-lived processes)",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"username",
+        "description":"User rights - primary token username",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"name",
+        "description":"Name being queried in lookup",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"type",
+        "description":"DNS record type of lookup as string",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"type_id",
+        "description":"Integer type ID for record type",
+        "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"status",
+        "description":"Response status code",
+        "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"response",
+        "description":"Results returned by lookup",
+        "type":"text",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -7076,6 +7277,24 @@
         "index":false
       },
       {
+        "name":"memory_inactive_file",
+        "description":"Memory inactive file",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"memory_total_inactive_file",
+        "description":"Memory total inactive file",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
         "name":"memory_max_usage",
         "description":"Memory maximum usage",
         "type":"bigint",
@@ -7287,7 +7506,7 @@
         "description":"cgroup namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7299,7 +7518,7 @@
         "description":"IPC namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7311,7 +7530,7 @@
         "description":"Mount namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7323,7 +7542,7 @@
         "description":"Network namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7335,7 +7554,7 @@
         "description":"PID namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7347,7 +7566,7 @@
         "description":"User namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -7359,7 +7578,7 @@
         "description":"UTS namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -8598,6 +8817,15 @@
         "index":false
       },
       {
+        "name":"pidversion",
+        "description":"Process ID version",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
         "name":"path",
         "description":"Path of executed file",
         "type":"text",
@@ -8618,6 +8846,42 @@
       {
         "name":"original_parent",
         "description":"Original parent process ID in case of reparenting",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"session_id",
+        "description":"The identifier of the session that contains the process group.",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"responsible_pid",
+        "description":"The pid of the process responsible for this process.",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"responsible_pidversion",
+        "description":"The pidversion of the process responsible for this process.",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"parent_pidversion",
+        "description":"The pidversion of the parent process.",
         "type":"bigint",
         "notes":"",
         "hidden":false,
@@ -9437,6 +9701,15 @@
         "index":false
       },
       {
+        "name":"symlink_target_path",
+        "description":"Full path of the symlink target if any",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
         "name":"attributes",
         "description":"File attrib string. See: https://ss64.com/nt/attrib.html",
         "type":"text",
@@ -9609,7 +9882,7 @@
         "description":"The BSD file flags (chflags). Possible values: NODUMP, UF_IMMUTABLE, UF_APPEND, OPAQUE, HIDDEN, ARCHIVED, SF_IMMUTABLE, SF_APPEND",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -10139,7 +10412,7 @@
         "description":"IsHidden attribute set in OpenDirectory",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -10420,70 +10693,29 @@
         "index":false
       },
       {
+        "name":"auto_updates",
+        "description":"1 if the cask auto-updates otherwise 0",
+        "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"app_name",
+        "description":"Name of the installed App (for Casks)",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
         "name":"prefix",
         "description":"Homebrew install prefix",
         "type":"text",
         "notes":"",
         "hidden":true,
-        "required":false,
-        "index":false
-      }
-    ]
-  },
-  {
-    "name":"hvci_status",
-    "description":"Retrieve HVCI info of the machine.",
-    "url":"https://github.com/osquery/osquery/blob/master/specs/windows/hvci_status.table",
-    "platforms":[
-      "windows"
-    ],
-    "evented":false,
-    "cacheable":false,
-    "notes":"",
-    "examples":[],
-    "columns":[
-      {
-        "name":"version",
-        "description":"The version number of the Device Guard build.",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"instance_identifier",
-        "description":"The instance ID of Device Guard.",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"vbs_status",
-        "description":"The status of the virtualization based security settings. Returns UNKNOWN if an error is encountered.",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"code_integrity_policy_enforcement_status",
-        "description":"The status of the code integrity policy enforcement settings. Returns UNKNOWN if an error is encountered.",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"umci_policy_status",
-        "description":"The status of the User Mode Code Integrity security settings. Returns UNKNOWN if an error is encountered.",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
         "required":false,
         "index":false
       }
@@ -10877,7 +11109,7 @@
         "description":"PCI slot number",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -11525,6 +11757,78 @@
         "name":"bytes",
         "description":"Number of matching bytes for this rule.",
         "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      }
+    ]
+  },
+  {
+    "name":"jetbrains_plugins",
+    "description":"JetBrains IDEs plugins.",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/jetbrains_plugins.table",
+    "platforms":[
+      "darwin",
+      "linux",
+      "windows"
+    ],
+    "evented":false,
+    "cacheable":false,
+    "notes":"",
+    "examples":[
+      "select * from users cross join jetbrains_plugins using (uid)"
+    ],
+    "columns":[
+      {
+        "name":"product_type",
+        "description":"The product type (Valid values: CLion, DataGrip, GoLand, IntelliJIdea, IntelliJIdeaCommunityEdition, PhpStorm, PyCharm, PyCharmCommunityEdition, ReSharper, Rider, RubyMine, RustRover, WebStorm)",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"uid",
+        "description":"The local user that owns the plugin",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":true
+      },
+      {
+        "name":"name",
+        "description":"Name of the plugin (Title Case)",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"version",
+        "description":"Version of the plugin",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"vendor",
+        "description":"The vendor name or organization id that authored the plugin",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"path",
+        "description":"The path on the filesystem for the plugin. This may be a folder or a jar filename",
+        "type":"text",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -12694,7 +12998,7 @@
         "description":"The inode number of the network namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -16051,7 +16355,7 @@
         "description":"Optional extra release specification",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -17202,7 +17506,7 @@
         "description":"PCI Device class ID in hex format",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17214,7 +17518,7 @@
         "description":"PCI Device  subclass in hex format",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17226,7 +17530,7 @@
         "description":"PCI Device subclass",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17238,7 +17542,7 @@
         "description":"Vendor ID of PCI device subsystem",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17250,7 +17554,7 @@
         "description":"Vendor of PCI device subsystem",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17262,7 +17566,7 @@
         "description":"Model ID of PCI device subsystem",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -17274,7 +17578,7 @@
         "description":"Device description of PCI device subsystem",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -18646,7 +18950,7 @@
         "description":"OpenBSM Attribute: Status of the process",
         "type":"bigint",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -18658,7 +18962,7 @@
         "description":"Filesystem user ID at process start",
         "type":"bigint",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -18670,7 +18974,7 @@
         "description":"Saved user ID at process start",
         "type":"bigint",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -18682,7 +18986,7 @@
         "description":"Filesystem group ID at process start",
         "type":"bigint",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -18694,7 +18998,7 @@
         "description":"Saved group ID at process start",
         "type":"bigint",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -18706,7 +19010,7 @@
         "description":"Syscall name: fork, vfork, clone, execve, execveat",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -19348,7 +19652,7 @@
         "description":"The inode number of the network namespace",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -19710,7 +20014,7 @@
         "description":"A 64bit pid that is never reused. Returns -1 if we couldn't gather them from the system.",
         "type":"bigint",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -19722,7 +20026,7 @@
         "description":"The 64bit parent pid that is never reused. Returns -1 if we couldn't gather them from the system.",
         "type":"bigint",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -19734,7 +20038,7 @@
         "description":"Indicates the specific processor designed for installation.",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -19746,7 +20050,7 @@
         "description":"Indicates the specific processor on which an entry may be used.",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -19758,7 +20062,7 @@
         "description":"Indicates whether the process is running under the Rosetta Translation Environment, yes=1, no=0, error=-1.",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -19770,7 +20074,7 @@
         "description":"The full hierarchical path of the process's control group",
         "type":"text",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -19874,6 +20178,24 @@
         "hidden":false,
         "required":false,
         "index":false
+      },
+      {
+        "name":"package_family_name",
+        "description":"A combination of PackageName and PublisherHash that is used to uniquely identify applications across versions and architectures.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"upgrade_code",
+        "description":"Specific to MSI applications, a GUID used to identify a product suite across multiple versions.",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
       }
     ]
   },
@@ -19930,7 +20252,7 @@
   },
   {
     "name":"python_packages",
-    "description":"Python packages installed in a system.",
+    "description":"Python packages installed in a system. NOTE: when querying on windows, even without a users cross join, all user installed python packages will be returned. This special behavior is to not break original functionality.",
     "url":"https://github.com/osquery/osquery/blob/master/specs/python_packages.table",
     "platforms":[
       "darwin",
@@ -19941,7 +20263,8 @@
     "cacheable":false,
     "notes":"",
     "examples":[
-      "select * from python_packages where directory='/usr/'"
+      "select * from python_packages where directory='/usr/'",
+      "select * from users cross join python_packages using (uid)"
     ],
     "columns":[
       {
@@ -19952,6 +20275,15 @@
         "hidden":false,
         "required":false,
         "index":false
+      },
+      {
+        "name":"uid",
+        "description":"The local user that owns the python package",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":true
       },
       {
         "name":"version",
@@ -20135,6 +20467,77 @@
       {
         "name":"cache_path",
         "description":"Path to cache data",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      }
+    ]
+  },
+  {
+    "name":"recent_files",
+    "description":"Recently files (as displayed in Start Menu or File Explorer).",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/windows/recent_files.table",
+    "platforms":[
+      "windows"
+    ],
+    "evented":false,
+    "cacheable":false,
+    "notes":"",
+    "examples":[
+      "SELECT * FROM users CROSS JOIN recent_files USING (uid)",
+      "SELECT recent_files.* FROM users CROSS JOIN recent_files USING (uid) WHERE mtime > unixepoch('now') - 3600"
+    ],
+    "columns":[
+      {
+        "name":"uid",
+        "description":"The local user ID",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":true
+      },
+      {
+        "name":"filename",
+        "description":"The name of the file",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"path",
+        "description":"The full path of the file",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"type",
+        "description":"Display type for the file",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"mtime",
+        "description":"Last modification time of the shortcut (usually corresponds to last opened time for the file)",
+        "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"shortcut_path",
+        "description":"Path to the shortcut where Windows stores the recent file data",
         "type":"text",
         "notes":"",
         "hidden":false,
@@ -20645,33 +21048,6 @@
         "index":false
       },
       {
-        "name":"update_url",
-        "description":"Extension-supplied update URI",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"author",
-        "description":"Optional extension author",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"developer_id",
-        "description":"Optional developer identifier",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
         "name":"description",
         "description":"Optional extension description text",
         "type":"text",
@@ -20682,7 +21058,7 @@
       },
       {
         "name":"path",
-        "description":"Path to extension XAR bundle",
+        "description":"Path to the Info.plist describing the extension",
         "type":"text",
         "notes":"",
         "hidden":false,
@@ -20701,15 +21077,6 @@
       {
         "name":"copyright",
         "description":"A human-readable copyright notice for the bundle",
-        "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"extension_type",
-        "description":"Extension Type: WebOrAppExtension or LegacyExtension",
         "type":"text",
         "notes":"",
         "hidden":false,
@@ -21102,7 +21469,7 @@
         "description":"(Intel) Secure mode: 0 disabled, 1 full security, 2 medium security",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -21114,7 +21481,7 @@
         "description":"(Apple Silicon) Human-readable description: 'Full Security', 'Reduced Security', or 'Permissive Security'",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -21126,7 +21493,7 @@
         "description":"(Apple Silicon) Allow user management of kernel extensions from identified developers (1 if allowed)",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -21138,7 +21505,7 @@
         "description":"(Apple Silicon) Allow remote (MDM) management of kernel extensions and automatic software updates (1 if allowed)",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -21150,7 +21517,7 @@
         "description":"Whether setup mode is enabled",
         "type":"integer",
         "notes":"",
-        "hidden":true,
+        "hidden":false,
         "required":false,
         "index":false,
         "platforms":[
@@ -22307,6 +22674,15 @@
         "index":false
       },
       {
+        "name":"hash_executable",
+        "description":"Set to 1 to also hash the executable, or 0 otherwise. Default is 1",
+        "type":"integer",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
         "name":"arch",
         "description":"If applicable, the arch of the signed code",
         "type":"text",
@@ -22546,7 +22922,7 @@
   },
   {
     "name":"socket_events",
-    "description":"Track network socket opens and closes.",
+    "description":"Track network socket bind, connect, and accepts.",
     "url":"https://github.com/osquery/osquery/blob/master/specs/posix/socket_events.table",
     "platforms":[
       "darwin",
@@ -22559,7 +22935,7 @@
     "columns":[
       {
         "name":"action",
-        "description":"The socket action (bind, listen, close)",
+        "description":"The socket action (bind, connect, accept)",
         "type":"text",
         "notes":"",
         "hidden":false,
@@ -22597,15 +22973,6 @@
         "name":"auid",
         "description":"Audit User ID",
         "type":"bigint",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"status",
-        "description":"Either 'succeeded', 'failed', 'in_progress' (connect() on non-blocking socket) or 'no_client' (null accept() on non-blocking socket)",
-        "type":"text",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -22709,6 +23076,18 @@
         "hidden":true,
         "required":false,
         "index":false
+      },
+      {
+        "name":"status",
+        "description":"Either 'succeeded', 'failed', 'in_progress' (connect() on non-blocking socket) or 'no_client' (null accept() on non-blocking socket)",
+        "type":"text",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false,
+        "platforms":[
+          "linux"
+        ]
       }
     ]
   },
@@ -23108,7 +23487,7 @@
         "description":"Specific attribute of opaque type",
         "type":"text",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -23407,6 +23786,20 @@
         "hidden":false,
         "required":false,
         "index":false
+      },
+      {
+        "name":"emulated_cpu_type",
+        "description":"Emulated CPU type",
+        "type":"text",
+        "notes":"",
+        "hidden":true,
+        "required":false,
+        "index":false,
+        "platforms":[
+          "windows",
+          "win32",
+          "cygwin"
+        ]
       }
     ]
   },
@@ -24026,6 +24419,15 @@
         "name":"timestamp",
         "description":"unix timestamp associated with the entry",
         "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"timestamp_double",
+        "description":"floating point timestamp associated with the entry",
+        "type":"text",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -24759,7 +25161,7 @@
         "description":"IsHidden attribute set in OpenDirectory",
         "type":"integer",
         "notes":"",
-        "hidden":false,
+        "hidden":true,
         "required":false,
         "index":false,
         "platforms":[
@@ -25184,6 +25586,15 @@
         "name":"uid",
         "description":"The local user that owns the plugin",
         "type":"bigint",
+        "notes":"",
+        "hidden":false,
+        "required":false,
+        "index":false
+      },
+      {
+        "name":"vscode_edition",
+        "description":"VSCode or VSCode Insiders",
+        "type":"text",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -27200,7 +27611,7 @@
   {
     "name":"yara",
     "description":"Triggers one-off YARA query for files at the specified path. Requires one of `sig_group`, `sigfile`, or `sigrule`.",
-    "url":"https://github.com/osquery/osquery/blob/master/specs/yara/yara.table",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/yara.table",
     "platforms":[
       "darwin",
       "linux",
@@ -27314,7 +27725,7 @@
   {
     "name":"yara_events",
     "description":"Track YARA matches for files specified in configuration data.",
-    "url":"https://github.com/osquery/osquery/blob/master/specs/yara/yara_events.table",
+    "url":"https://github.com/osquery/osquery/blob/master/specs/yara_events.table",
     "platforms":[
       "darwin",
       "linux",
@@ -27347,15 +27758,6 @@
         "name":"action",
         "description":"Change action (UPDATE, REMOVE, etc)",
         "type":"text",
-        "notes":"",
-        "hidden":false,
-        "required":false,
-        "index":false
-      },
-      {
-        "name":"transaction_id",
-        "description":"ID used during bulk update",
-        "type":"bigint",
         "notes":"",
         "hidden":false,
         "required":false,
@@ -27414,6 +27816,18 @@
         "hidden":true,
         "required":false,
         "index":false
+      },
+      {
+        "name":"transaction_id",
+        "description":"ID used during bulk update",
+        "type":"bigint",
+        "notes":"",
+        "hidden":true,
+        "required":false,
+        "index":false,
+        "platforms":[
+          "darwin"
+        ]
       }
     ]
   },
