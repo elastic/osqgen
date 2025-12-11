@@ -1,20 +1,1712 @@
 [
   {
-    "name": "host_groups",
-    "description": "Host system groups derived from /hostfs mount to the container.",
-    "url": "https://github.com/osquery/osquery/blob/master/specs/groups.table",
+    "name": "elastic_amcache_application",
+    "description": "Installed applications from Windows Amcache registry",
+    "url": "",
     "platforms": [
-      "darwin",
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record creation timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record creation timestamp (RFC3339 UTC)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "program_id",
+        "description": "Unique identifier for the program",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "program_instance_id",
+        "description": "Unique identifier for the program instance",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "name",
+        "description": "Program name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "version",
+        "description": "Program version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "publisher",
+        "description": "Program publisher",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "language",
+        "description": "Program language code",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "install_date",
+        "description": "Installation date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "source",
+        "description": "Installation source",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "root_dir_path",
+        "description": "Program root directory path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "hidden_arp",
+        "description": "Whether hidden from ARP (1=yes, 0=no)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "uninstall_string",
+        "description": "Uninstall command string",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "registry_key_path",
+        "description": "Registry key path where application is registered",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "store_app_type",
+        "description": "Microsoft Store app type",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "inbox_modern_app",
+        "description": "Whether application is a modern (UWP) app",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "manifest_path",
+        "description": "Application manifest file path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "package_full_name",
+        "description": "Full package name (UWP apps)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_package_code",
+        "description": "MSI package code",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_product_code",
+        "description": "MSI product code",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_install_date",
+        "description": "MSI installation date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bundle_manifest_path",
+        "description": "Bundle manifest file path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "user_sid",
+        "description": "User SID if application is user-specific",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "sha1",
+        "description": "SHA1 hash of the application",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_application_file",
+    "description": "Inventory of application files from Windows Amcache (Root\\\\InventoryApplicationFile)",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "program_id",
+        "description": "Program identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "file_id",
+        "description": "File identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "lower_case_long_path",
+        "description": "Full file path (lowercase)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "name",
+        "description": "File name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "original_file_name",
+        "description": "Original file name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "publisher",
+        "description": "File publisher",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "version",
+        "description": "File version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bin_file_version",
+        "description": "Binary file version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "binary_type",
+        "description": "Binary type",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product_name",
+        "description": "Product name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product_version",
+        "description": "Product version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "link_date",
+        "description": "Link date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bin_product_version",
+        "description": "Binary product version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "size",
+        "description": "File size in bytes",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "language",
+        "description": "Language code",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "usn",
+        "description": "Update sequence number",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "appx_package_full_name",
+        "description": "AppX package full name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "is_os_component",
+        "description": "Whether the file is an OS component",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "appx_package_relative_id",
+        "description": "AppX package relative ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "sha1",
+        "description": "SHA1 hash derived from program_id",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_application_shortcut",
+    "description": "Inventory of application shortcuts from Windows Amcache (Root\\\\InventoryApplicationShortcut)",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "shortcut_path",
+        "description": "Shortcut path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "shortcut_target_path",
+        "description": "Shortcut target path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "shortcut_aumid",
+        "description": "Shortcut AUMID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "shortcut_program_id",
+        "description": "Shortcut program identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_applications_view",
+    "description": "Combined view of Amcache applications and application files",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "program_id",
+        "description": "Program identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "file_id",
+        "description": "File identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "lower_case_long_path",
+        "description": "Full file path (lowercase)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "name",
+        "description": "Application or file name (coalesced)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "original_file_name",
+        "description": "Original file name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "publisher",
+        "description": "Publisher (coalesced)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "version",
+        "description": "Version (coalesced)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bin_file_version",
+        "description": "Binary file version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "binary_type",
+        "description": "Binary type",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product_name",
+        "description": "Product name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product_version",
+        "description": "Product version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "link_date",
+        "description": "Link date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bin_product_version",
+        "description": "Binary product version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "size",
+        "description": "File size in bytes",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "language",
+        "description": "Language code (coalesced)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "usn",
+        "description": "Update sequence number",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "appx_package_full_name",
+        "description": "AppX package full name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "is_os_component",
+        "description": "Whether the file is an OS component",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "appx_package_relative_id",
+        "description": "AppX package relative ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "file_sha1",
+        "description": "SHA1 hash from file record",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "program_instance_id",
+        "description": "Program instance identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "install_date",
+        "description": "Installation date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "source",
+        "description": "Installation source",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "root_dir_path",
+        "description": "Program root directory path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "hidden_arp",
+        "description": "Whether hidden from ARP (1=yes, 0=no)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "uninstall_string",
+        "description": "Uninstall command string",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "registry_key_path",
+        "description": "Registry key path where application is registered",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "store_app_type",
+        "description": "Microsoft Store app type",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "inbox_modern_app",
+        "description": "Whether application is a modern (UWP) app",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "manifest_path",
+        "description": "Application manifest file path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "package_full_name",
+        "description": "Full package name (UWP apps)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_package_code",
+        "description": "MSI package code",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_product_code",
+        "description": "MSI product code",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "msi_install_date",
+        "description": "MSI installation date (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bundle_manifest_path",
+        "description": "Bundle manifest file path",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "user_sid",
+        "description": "User SID if application is user-specific",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "app_sha1",
+        "description": "SHA1 hash from application record",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_device_pnp",
+    "description": "Plug and Play device inventory from Windows Amcache (Root\\\\InventoryDevicePnp)",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "model",
+        "description": "Device model",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "manufacturer",
+        "description": "Device manufacturer",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_name",
+        "description": "Driver name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "parent_id",
+        "description": "Parent device identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "matching_id",
+        "description": "Matching ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "class",
+        "description": "Device class",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "class_guid",
+        "description": "Device class GUID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "description",
+        "description": "Device description",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "enumerator",
+        "description": "Enumerator",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "service",
+        "description": "Service",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "install_state",
+        "description": "Install state",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "device_state",
+        "description": "Device state",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "inf",
+        "description": "INF file",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_ver_date",
+        "description": "Driver version date",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "install_date",
+        "description": "Install date",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "first_install_date",
+        "description": "First install date",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_package_strong_name",
+        "description": "Driver package strong name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_ver_version",
+        "description": "Driver version string",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "container_id",
+        "description": "Container identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "problem_code",
+        "description": "Problem code",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "provider",
+        "description": "Provider",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_id",
+        "description": "Driver identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "bus_reported_description",
+        "description": "Bus reported description",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "hw_id",
+        "description": "Hardware ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "extended_infs",
+        "description": "Extended INF files",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "compid",
+        "description": "Component ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "stack_id",
+        "description": "Stack ID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "upper_class_filters",
+        "description": "Upper class filters",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "lower_class_filters",
+        "description": "Lower class filters",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "upper_filters",
+        "description": "Upper filters",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "lower_filters",
+        "description": "Lower filters",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "device_interface_classes",
+        "description": "Device interface classes",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "location_paths",
+        "description": "Location paths",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_driver_binary",
+    "description": "Driver binary metadata from Windows Amcache",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_name",
+        "description": "Driver name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "inf",
+        "description": "INF file name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_version",
+        "description": "Driver version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product",
+        "description": "Product name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "product_version",
+        "description": "Product version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "wdf_version",
+        "description": "WDF version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_company",
+        "description": "Driver company",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_package_strong_name",
+        "description": "Driver package strong name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "service",
+        "description": "Service name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_in_box",
+        "description": "Whether driver is in-box",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_signed",
+        "description": "Whether driver is signed",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_is_kernel_mode",
+        "description": "Whether driver is kernel mode",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_id",
+        "description": "Driver identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_last_write_time",
+        "description": "Driver last write time",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_type",
+        "description": "Driver type",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_time_stamp",
+        "description": "Driver timestamp",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_check_sum",
+        "description": "Driver checksum",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "image_size",
+        "description": "Image size in bytes",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_amcache_driver_package",
+    "description": "Driver package inventory from Windows Amcache (Root\\\\InventoryDriverPackage)",
+    "url": "",
+    "platforms": [
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Record timestamp (Unix seconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date_time",
+        "description": "Record timestamp in RFC3339 UTC",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "class_guid",
+        "description": "Class GUID",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "class",
+        "description": "Device class",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "directory",
+        "description": "Driver directory",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "date",
+        "description": "Driver package date",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "version",
+        "description": "Driver package version",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "provider",
+        "description": "Driver package provider",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "submission_id",
+        "description": "Submission identifier",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "driver_in_box",
+        "description": "Whether driver is in-box",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "inf",
+        "description": "INF filename",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "flight_ids",
+        "description": "Flight identifiers",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "recovery_ids",
+        "description": "Recovery identifiers",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "is_active",
+        "description": "Whether the driver package is active",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "hwids",
+        "description": "Hardware IDs",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "sysfile",
+        "description": "System file name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_browser_history",
+    "description": "Browser history from Chrome, Firefox, Safari, Edge, and Brave",
+    "url": "",
+    "platforms": [
       "linux",
-      "windows",
-      "freebsd"
+      "darwin",
+      "windows"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "timestamp",
+        "description": "Visit timestamp (Unix milliseconds)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "datetime",
+        "description": "Visit timestamp in RFC3339 format (UTC)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "url_id",
+        "description": "Unique identifier for the URL in the browser's database",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "scheme",
+        "description": "URL scheme (http, https, etc.)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "domain",
+        "description": "Registered domain from URL (e.g., example.com)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "hostname",
+        "description": "Full hostname from URL",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "url",
+        "description": "Complete URL visited",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "title",
+        "description": "Page title",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "browser",
+        "description": "Browser name (chrome, firefox, safari, edge, brave)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "parser",
+        "description": "Parser used (chromium, firefox, safari)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "user",
+        "description": "Operating system user account",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "profile_name",
+        "description": "Browser profile name",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "transition_type",
+        "description": "How the visit occurred (link, typed, auto_bookmark, etc.)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "referring_url",
+        "description": "URL that referred to this page",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "visit_id",
+        "description": "Unique visit identifier",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "from_visit_id",
+        "description": "Visit ID of the referring visit",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "visit_source",
+        "description": "Source of the visit",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "is_hidden",
+        "description": "Whether the visit is hidden (1=yes, 0=no)",
+        "type": "integer",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "history_path",
+        "description": "Path to the browser history database file",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "ch_visit_duration_ms",
+        "description": "Visit duration in milliseconds (Chromium browsers only)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "ff_session_id",
+        "description": "Firefox session tracking identifier",
+        "type": "integer",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "ff_frecency",
+        "description": "Firefox frecency score (frequency + recency algorithm)",
+        "type": "integer",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "sf_domain_expansion",
+        "description": "Safari domain classification/expansion",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "sf_load_successful",
+        "description": "Whether page loaded successfully in Safari (1=yes, 0=no)",
+        "type": "integer",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "custom_data_dir",
+        "description": "Custom data directory if applicable",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "elastic_file_analysis",
+    "description": "File analysis including code signing, dependencies, symbols, and strings (macOS only)",
+    "url": "",
+    "platforms": [
+      "darwin"
+    ],
+    "evented": false,
+    "cacheable": false,
+    "columns": [
+      {
+        "name": "path",
+        "description": "Full path to the file being analyzed",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "mode",
+        "description": "File permissions (mode)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "uid",
+        "description": "File owner user ID",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "gid",
+        "description": "File owner group ID",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "size",
+        "description": "File size in bytes",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "mtime",
+        "description": "File modification time (Unix timestamp)",
+        "type": "bigint",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "file_type",
+        "description": "File type (output from 'file' command)",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "code_sign",
+        "description": "Code signing information (output from 'codesign')",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "dependencies",
+        "description": "Library dependencies (output from 'otool -L')",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "symbols",
+        "description": "Symbol table information (output from 'nm')",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      },
+      {
+        "name": "strings",
+        "description": "Printable strings from the file (output from 'strings')",
+        "type": "text",
+        "hidden": false,
+        "required": false,
+        "index": false
+      }
+    ]
+  },
+  {
+    "name": "host_groups",
+    "description": "Local system groups (from /etc/group on Unix systems)",
+    "url": "",
+    "platforms": [
+      "linux",
+      "darwin"
     ],
     "evented": false,
     "cacheable": false,
     "columns": [
       {
         "name": "gid",
-        "description": "Unsigned int64 group ID",
+        "description": "Group ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -22,7 +1714,7 @@
       },
       {
         "name": "gid_signed",
-        "description": "A signed int64 version of gid",
+        "description": "Group ID as signed integer",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -30,41 +1722,9 @@
       },
       {
         "name": "groupname",
-        "description": "Canonical local group name",
+        "description": "Group name",
         "type": "text",
         "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "group_sid",
-        "description": "Unique group ID",
-        "type": "text",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "comment",
-        "description": "Remarks or comments associated with the group",
-        "type": "text",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "is_hidden",
-        "description": "IsHidden attribute set in OpenDirectory",
-        "type": "integer",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "pid_with_namespace",
-        "description": "Pids that contain a namespace",
-        "type": "integer",
-        "hidden": true,
         "required": false,
         "index": false
       }
@@ -72,20 +1732,18 @@
   },
   {
     "name": "host_processes",
-    "description": "All running processes on the host system, derived from /hostfs mount to the container.",
-    "url": "https://github.com/osquery/osquery/blob/master/specs/processes.table",
+    "description": "All running processes on the host",
+    "url": "",
     "platforms": [
-      "darwin",
       "linux",
-      "windows",
-      "freebsd"
+      "darwin"
     ],
     "evented": false,
-    "cacheable": true,
+    "cacheable": false,
     "columns": [
       {
         "name": "pid",
-        "description": "Process (or thread) ID",
+        "description": "Process ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -93,7 +1751,7 @@
       },
       {
         "name": "name",
-        "description": "The process path or shorthand argv[0]",
+        "description": "Process name",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -109,7 +1767,7 @@
       },
       {
         "name": "cmdline",
-        "description": "Complete argv",
+        "description": "Complete command line with arguments",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -117,7 +1775,7 @@
       },
       {
         "name": "state",
-        "description": "Process state",
+        "description": "Process state (running, sleeping, zombie, etc.)",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -125,7 +1783,7 @@
       },
       {
         "name": "cwd",
-        "description": "Process current working directory",
+        "description": "Current working directory",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -133,7 +1791,7 @@
       },
       {
         "name": "root",
-        "description": "Process virtual root directory",
+        "description": "Root directory for the process",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -141,7 +1799,7 @@
       },
       {
         "name": "uid",
-        "description": "Unsigned user ID",
+        "description": "Real user ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -149,7 +1807,7 @@
       },
       {
         "name": "gid",
-        "description": "Unsigned group ID",
+        "description": "Real group ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -157,7 +1815,7 @@
       },
       {
         "name": "euid",
-        "description": "Unsigned effective user ID",
+        "description": "Effective user ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -165,7 +1823,7 @@
       },
       {
         "name": "egid",
-        "description": "Unsigned effective group ID",
+        "description": "Effective group ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -173,7 +1831,7 @@
       },
       {
         "name": "suid",
-        "description": "Unsigned saved user ID",
+        "description": "Saved user ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -181,7 +1839,7 @@
       },
       {
         "name": "sgid",
-        "description": "Unsigned saved group ID",
+        "description": "Saved group ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -189,7 +1847,7 @@
       },
       {
         "name": "on_disk",
-        "description": "The process path exists yes=1, no=0, unknown=-1",
+        "description": "Whether binary still exists on disk (1=yes, 0=no)",
         "type": "integer",
         "hidden": false,
         "required": false,
@@ -197,7 +1855,7 @@
       },
       {
         "name": "wired_size",
-        "description": "Bytes of unpageable memory used by process",
+        "description": "Memory size wired/locked in RAM (bytes)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -205,7 +1863,7 @@
       },
       {
         "name": "resident_size",
-        "description": "Bytes of private memory used by process",
+        "description": "Resident memory size (bytes)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -213,7 +1871,7 @@
       },
       {
         "name": "total_size",
-        "description": "Total virtual memory size",
+        "description": "Total virtual memory size (bytes)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -221,7 +1879,7 @@
       },
       {
         "name": "user_time",
-        "description": "CPU time in milliseconds spent in user space",
+        "description": "CPU time in user mode (milliseconds)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -229,7 +1887,7 @@
       },
       {
         "name": "system_time",
-        "description": "CPU time in milliseconds spent in kernel space",
+        "description": "CPU time in kernel mode (milliseconds)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -237,7 +1895,7 @@
       },
       {
         "name": "disk_bytes_read",
-        "description": "Bytes read from disk",
+        "description": "Total bytes read from disk",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -245,7 +1903,7 @@
       },
       {
         "name": "disk_bytes_written",
-        "description": "Bytes written to disk",
+        "description": "Total bytes written to disk",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -253,7 +1911,7 @@
       },
       {
         "name": "start_time",
-        "description": "Process start time in seconds since Epoch, in case of error -1",
+        "description": "Process start time (Unix timestamp)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -261,7 +1919,7 @@
       },
       {
         "name": "parent",
-        "description": "Process parent's PID",
+        "description": "Parent process ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -269,7 +1927,7 @@
       },
       {
         "name": "pgroup",
-        "description": "Process group",
+        "description": "Process group ID",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -277,7 +1935,7 @@
       },
       {
         "name": "threads",
-        "description": "Number of threads used by process",
+        "description": "Number of threads",
         "type": "integer",
         "hidden": false,
         "required": false,
@@ -285,95 +1943,7 @@
       },
       {
         "name": "nice",
-        "description": "Process nice level (-20 to 20, default 0)",
-        "type": "integer",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "elevated_token",
-        "description": "Process uses elevated token yes=1, no=0",
-        "type": "integer",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "secure_process",
-        "description": "Process is secure (IUM) yes=1, no=0",
-        "type": "integer",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "protection_type",
-        "description": "The protection type of the process",
-        "type": "text",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "virtual_process",
-        "description": "Process is virtual (e.g. System, Registry, vmmem) yes=1, no=0",
-        "type": "integer",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "elapsed_time",
-        "description": "Elapsed time in seconds this process has been running.",
-        "type": "bigint",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "handle_count",
-        "description": "Total number of handles that the process has open. This number is the sum of the handles currently opened by each thread in the process.",
-        "type": "bigint",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "percent_processor_time",
-        "description": "Returns elapsed time that all of the threads of this process used the processor to execute instructions in 100 nanoseconds ticks.",
-        "type": "bigint",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "upid",
-        "description": "A 64bit pid that is never reused. Returns -1 if we couldn't gather them from the system.",
-        "type": "bigint",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "uppid",
-        "description": "The 64bit parent pid that is never reused. Returns -1 if we couldn't gather them from the system.",
-        "type": "bigint",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "cpu_type",
-        "description": "Indicates the specific processor designed for installation.",
-        "type": "integer",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "cpu_subtype",
-        "description": "Indicates the specific processor on which an entry may be used.",
+        "description": "Process nice value",
         "type": "integer",
         "hidden": false,
         "required": false,
@@ -383,13 +1953,11 @@
   },
   {
     "name": "host_users",
-    "description": "Host user accounts derived from /hostfs mount to the container.",
-    "url": "https://github.com/osquery/osquery/blob/master/specs/users.table",
+    "description": "Local user accounts (from /etc/passwd on Unix systems)",
+    "url": "",
     "platforms": [
-      "darwin",
       "linux",
-      "windows",
-      "freebsd"
+      "darwin"
     ],
     "evented": false,
     "cacheable": false,
@@ -404,7 +1972,7 @@
       },
       {
         "name": "gid",
-        "description": "Group ID (unsigned)",
+        "description": "Group ID (primary group)",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -412,7 +1980,7 @@
       },
       {
         "name": "uid_signed",
-        "description": "User ID as int64 signed (Apple)",
+        "description": "User ID as signed integer",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -420,7 +1988,7 @@
       },
       {
         "name": "gid_signed",
-        "description": "Default group ID as int64 signed (Apple)",
+        "description": "Group ID as signed integer",
         "type": "bigint",
         "hidden": false,
         "required": false,
@@ -436,7 +2004,7 @@
       },
       {
         "name": "description",
-        "description": "Optional user description",
+        "description": "Optional user description or full name (GECOS field)",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -444,7 +2012,7 @@
       },
       {
         "name": "directory",
-        "description": "User's home directory",
+        "description": "User's home directory path",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -452,7 +2020,7 @@
       },
       {
         "name": "shell",
-        "description": "User's configured default shell",
+        "description": "User's default shell",
         "type": "text",
         "hidden": false,
         "required": false,
@@ -460,33 +2028,9 @@
       },
       {
         "name": "uuid",
-        "description": "User's UUID (Apple) or SID (Windows)",
+        "description": "User's UUID (platform-specific)",
         "type": "text",
         "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "type",
-        "description": "Whether the account is roaming (domain), local, or a system profile",
-        "type": "text",
-        "hidden": true,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "is_hidden",
-        "description": "IsHidden attribute set in OpenDirectory",
-        "type": "integer",
-        "hidden": false,
-        "required": false,
-        "index": false
-      },
-      {
-        "name": "pid_with_namespace",
-        "description": "Pids that contain a namespace",
-        "type": "integer",
-        "hidden": true,
         "required": false,
         "index": false
       }
